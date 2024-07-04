@@ -8,16 +8,16 @@ print("Program loaded successfully")
 print(gap)
 
 
-way = input("Do you have your own paragraph? '1' to use your own, or leave it blank to use the default: ")
+way = int(input("Do you have your own paragraph? '1' to use your own, or '0' to use the default: "))
 
-while way != "" and way != "1":
+while way != 0 and way != 1:
     print(gap)
-    way = input("Either write '1' to use your own paragraph or leave it blank: ")
+    way = input("Either write '1' to use your own paragraph or '0' to use the Defaut paragraph: ")
 
 print(gap)
 
 
-if way == "":
+if way == 0:
     useDefault = True
     print("You will be using the DEFAULT paragraph")
 else:
@@ -32,34 +32,33 @@ else:
     print("---- Here is the paragraph that will be used ---- \n" + inputParagraph)
 print(gap)
 
-
 inputWordToFind = input("What word would you like to find in this paragraph? ")
+inputWordToFindSmallCase = inputWordToFind.lower()
 print(gap)
 
 
 if useDefault:
-    finder = defaultParagraph.find(inputWordToFind)
+    finder = defaultParagraph.find(inputWordToFindSmallCase)
 else:
-    finder = inputParagraph.find(inputWordToFind)
+    finder = inputParagraph.find(inputWordToFindSmallCase)
 
 if finder != -1:
     print("The word was found")
     print(gap)
     
 
-    replaceConfirmation = input("Do you want to replace this word with something else? YES = '1'   NO = 'LEAVE IT BLANK': ")
+    replaceConfirmation = int(input("Do you want to replace this word with something else? YES = '1'   NO = '0': "))
     print(gap)
 
 
-    if replaceConfirmation != "" and replaceConfirmation != "1":
-        while replaceConfirmation == "" or replaceConfirmation == "1":
-            replaceConfirmation = input("Incorrect input. '1' to replace or leave blank: ")
+    if replaceConfirmation != 0 and replaceConfirmation != 1:
+        while replaceConfirmation != 0 or replaceConfirmation != 1:
+            replaceConfirmation = int(input("Incorrect input. '1' to replace or '0' to skip: "))
             print(gap)
     
-    if replaceConfirmation == "1":
+    if replaceConfirmation == 1:
 
         inputWordToReplace = input("Enter the word to replace it with: ")
-
 
         if useDefault:
             modifiedParagraph = defaultParagraph.replace(inputWordToFind, inputWordToReplace)
@@ -74,9 +73,9 @@ elif finder == -1:
     while finder == -1:
         inputWordToFind = input("That word was not found in the paragraph. Try another word: ")
         if useDefault:
-            finder = defaultParagraph.find(inputWordToFind)
+            finder = defaultParagraph.find(inputWordToFindSmallCase)
         else:
-            finder = inputParagraph.find(inputWordToFind)
+            finder = inputParagraph.find(inputWordToFindSmallCase)
         print(gap)
 
 print(gap)
